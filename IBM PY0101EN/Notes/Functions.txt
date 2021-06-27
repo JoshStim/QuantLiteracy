@@ -1,0 +1,83 @@
+IBM PY0101EN
+06/27/2021
+
+Functions:
+
+def Mult(a,b)
+	
+	c = a*b
+	return c
+
+Mult(2,3)
+6
+
+Mult(2,"Michael Jackson")
+"Michael Jackson Michael Jackson"
+
+In many cases, a function does not have a return statement. In these cases, Python will 
+return the special "None" object. Practically speaking, if your function has no return statement, you can treat it as if the function returns nothing at all.
+
+Python doesn't allow a function to have an empty body, so we must use the keyword pass, which doesn't do anything, but satisfies the requirement of a non-empty body.
+
+def NoWork():
+	pass
+
+print(NoWork())
+None
+
+In the background, if the return statement is not called, Python will automatically return a None.
+
+Variadic parameters allow us to input a variable number of elements.
+
+def ArtistNames(*names):
+
+	for name in names:
+		print(name)
+
+ArtistNames("Michael Jackson", "AC/DC", "Pink Floyd")
+
+"Michael Jackson"
+"AC/DC"
+"Pink Floyd"
+
+Scope:
+The scope of a variable is the part of the program where that variable is accessible. Variables that are defined outside of any function are said to be within the global scope, meaning they can be accessed anywhere after they are defined.
+
+def AddDC(x):
+	x = x+"DC"
+	print(x)
+	return(x)
+
+x = "AC"
+z = AddDC(x)
+
+z: "ACDC"
+
+In the global scope, x == "AC"
+but in the scope of the function x == "ACDC"
+
+A variable defined within the global scope is called a global variable.
+When we call the function, we enter a new scope or the scope of AddDC. 
+Local variables exist only within the scope of the function.
+
+Variables inside the global scope can have the same name as variables in the local scope with not conflict.
+
+If a variable is not defined within a function, Python will check the global scope.
+
+Within a function, if we define a variable with the keyword global, the variable will be a global variable.
+
+You can set a efault value for arguments in your function.
+
+def isGoodRating(rating = 4):
+	if(rating < 7):
+		print("this album sucks its rating is", rating)
+	else:
+		print("this album is good its rating is", rating)
+
+Arguments can be packed into a dictionary as shown:
+
+def printDictionary(**args):
+	for key in args:
+		print(key + " : " + args[key])
+
+printDictionary(Country='Canada', Province='Ontario',City='Toronto')
